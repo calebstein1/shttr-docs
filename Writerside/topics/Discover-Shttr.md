@@ -11,7 +11,7 @@ Shell on the Shttr is managed entirely by the Shttr CLI, which can be downloaded
 You'll need to make sure you have certain dependencies installed on your computer prior to running Shttr CLI.
 Specifically, you'll need Docker and NodeJS installed.
 Once the dependencies are met, you'll download install.sh from [shttr.io](https://shttr.io), and run the following commands in your terminal:
-```
+```Shell
 cd ~/Downloads
 chmod +x install.sh
 sudo ./install.sh
