@@ -9,6 +9,5 @@
     <toc-element topic="Discover-Shttr.md"/>
     <toc-element topic="Shttr-CLI.md"/>
     <toc-element topic="Anatomy-of-a-Shttr-App.md"/>
-    <toc-element topic="Modules.md"/>
     <toc-element topic="Deploying-Your-App.md"/>
 </instance-profile>

@@ -14,4 +14,8 @@
         <description>Created after removal of "Tutorials" from Shttr Docs</description>
         <accepts>Tutorials.html</accepts>
     </rule>
+    <rule id="7779e475">
+        <description>Created after removal of "Modules" from Shttr Docs</description>
+        <accepts>Modules.html</accepts>
+    </rule>
 </rules>
