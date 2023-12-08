@@ -27,10 +27,10 @@ Shttr CLI also initializes all new apps as git repos.
 
 ## Generating Assets
 
-``Shell
+```Shell
 shttr g page page_name
 shttr generate page page_name
-``
+```
 
 You can use `shttr g` or `shttr generate` to generate assets for your app.
 Currently, there is only one supported generator, the page generator.
