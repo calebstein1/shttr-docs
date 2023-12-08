@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="sd"
+                 name="Shttr Docs"
+                 start-page="Discover-Shttr.md">
+
+    <toc-element topic="Discover-Shttr.md"/>
+    <toc-element topic="Shttr-CLI.md"/>
+    <toc-element topic="Anatomy-of-a-Shttr-App.md"/>
+    <toc-element topic="Modules.md"/>
+    <toc-element topic="Deploying-Your-App.md"/>
+</instance-profile>
