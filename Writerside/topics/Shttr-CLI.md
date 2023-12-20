@@ -85,9 +85,9 @@ You can use `shttr s` or `shttr server` to run the Shttr server.
 This will build a Docker image and then run the integrated Apache web server, which can be accessed at localhost:3000.
 This approach ensures consistency between the development and production environment.
 The server optionally takes `--production` as a command line flag, which will run the server in production mode.
-At the moment, this has no effect, but once Shttr SQL is released, this switch will allow for different development and production databases to be used.
-Because of the containerized nature of the server, it does not support live reloading.
-If you make a change to your app files, you will need to build a new image and relaunch the server to see the changes reflected.
+At the moment, this switch controls whether or not live-reloading is enabled, but once Shttr SQL is released, this switch will also allow for different development and production databases to be used.
+In development mode, the development files in `shttr` and `cgi-bin` are bind-mounted within the Docker container so that any changes you make while the server is running will immediately be reflected in the running server.
+In production mode, the source files are copied into the Docker image and so the site is read-only while the server is running.
 
 ## Debugging Pages
 
