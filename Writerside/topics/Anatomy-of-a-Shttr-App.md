@@ -77,3 +77,45 @@ At the moment, it contains deployment options and supports the following two par
 `DEPLOYMENT_TARGET` determines the app's deployment target, currently there is one supported value: `systemd`, which deploys the production Docker image to a web server as a SystemD service.
 `SSH_ADDRESS` sets the username and address of the server where the Docker image and SystemD service is to be deployed.
 It takes the standard format `user@example.com`.
+
+## node_modules
+
+The `node_modules` directory, as well as the `package.json` and `package-lock.json` files in the root of your project directory contain build-time NodeJS package dependencies which are used to build your app but do not need to be bundled with it in deployment.
+These build dependencies are managed by ShttrCLI and should not be modified.
+
+## shttr/app/assets
+
+This directory contains static assets to be used by your Shttr pages.
+The directory can be accessed by your views using the environment variable `SHTTR_ASSETS`.
+
+### images
+
+The `images` directory contains images that can be used on your pages.
+The src URL in your img tag would look like `${SHTTR_ASSETS}/images/image.png`.
+
+### node_packages, package.json, package-lock.json
+
+These directories and files contain NodeJS runtime packages for your project.
+These _will_ be bundled with your app in deployment.
+The `shttr npm` command controls packages installed here, and any package installed and imported in a page can be accessed using the variable `node_package-name`.
+The `node_package-name` variable points to the package's installation directory, so for example, if we'd installed the Turn library using `shttr npm i @domchristie/turn` and we'd imported the library using `use @domchristie/turn`, we'd have access to the variable `node_turn` which would expand to `/app/assets/node_modules/@domchristie/turn`.
+This variable would be used within our pages or in an importmap to access the Node package.
+
+### public
+
+This directory contains the compiled stylesheet which is used by the view pages.
+When assets are compiled using either `shttr d -c` or `shttr c`, all stylesheets used by the project are compiled into one .css file named with a checksum digest.
+A link to this file is then automatically injected into the head of each view by default.
+Note that only one .css file can exist in this directory at a time, otherwise the automatic linking will fail.
+
+### scripts
+
+This directory contains Javascript files to be used by your views.
+Any script in the `vendored` subdirectory will be injected into the head of each page automatically by default.
+Any scripts outside `vendored` will need to be explicitly loaded into a script tag using `${SHTTR_ASSETS}/scripts/script.js` as the src URL.
+
+### stylesheets
+
+This directory contains the source stylesheets that are to be modified by the app developer.
+All .css and .scss files within the `stylesheets` directory and any subdirectories will be compiled into one big .css file named with a checksum digest and placed under `public` for use by the running app.
+This compilation is triggered by running `shttr d -c` or `shttr c`.
