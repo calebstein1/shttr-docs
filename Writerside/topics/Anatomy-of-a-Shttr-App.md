@@ -34,7 +34,6 @@ This section will go into detail about what each directory or file does.
     │   ├── controllers
     │   │   ├── about.sh
     │   │   └── index.sh
-    │   ├── db
     │   ├── globals.sh
     │   ├── models
     │   │   ├── about.sh
@@ -119,3 +118,38 @@ Any scripts outside `vendored` will need to be explicitly loaded into a script t
 This directory contains the source stylesheets that are to be modified by the app developer.
 All .css and .scss files within the `stylesheets` directory and any subdirectories will be compiled into one big .css file named with a checksum digest and placed under `public` for use by the running app.
 This compilation is triggered by running `shttr d -c` or `shttr c`.
+
+## shttr/app/controllers
+
+This directory contains the controller script for each page.
+A basic controller script will just set the page title, run the model, and then run the view script.
+Controllers can get quite involved on complex pages, while the proper documentation is in progress, see the code for [calebstein.net](https://calebstein.net) [here](https://github.com/calebstein1/calebstein-web) for examples.
+
+## shttr/app/globals.sh
+
+This file is run on every page load in the app.
+It's a good spot to declare any modules that will be needed by every page, or to do any global prep work based on saved cookies.
+
+## shttr/app/models
+
+The files in this directory correspond to files in the `controllers` directory.
+Each controller runs its corresponding model in its environment, and while it's not strictly necessary to use the model script, it's there for teh sake of code organization.
+
+## shttr/app/views
+
+Each page view has two components: a script and a directory of partials.
+The script uses the `esh` module and shell logic to render the HTML response to the client.
+Each directory of partials contains component files, which can either be HTML files, or any file that Pandoc can convert to HTML.
+These files do not require use of a specific templating language, but any environment variables in them will be replaced with their proper values upon rendering by the `esh` module.
+
+## bin
+
+This contains the main Shttr executable script.
+After the entrypoint finishes, execution is handed to the `shttr` script here, which further sets up the environment for the controller to take over.
+Do not modify files in this directory unless you really know what you're doing.
+
+## lib
+
+This directory contains the modules that are imported by pages with the `uae` command.
+If you were to write your own module, you could stick it here and access it with `use`, but that's not really officially supported at the point so it's recommended to leave this directory alone.
+Just accept the magic ;)
