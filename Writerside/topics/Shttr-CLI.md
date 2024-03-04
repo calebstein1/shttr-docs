@@ -114,11 +114,18 @@ shttr d -c
 In order to deploy your Shttr apps, you'll run `shttr d` or `shttr deploy`.
 Adding the `-c` flag to the deploy command will run the compile step prior to building the image and deploying.
 Shttr CLI will read the values in your app's `config.sh` file to determine how to deploy the app.
-Currently, there is only one supported deployment target: systemd.
-This target will deploy your app over SSH to a remote server with Docker installed and register itself as a SystemD service on that server.
+You'll set your deployment target as the value of `DEPLOYMENT_TARGET` in `config.sh`.
+Currently, there are two supported deployment targets: `systemd` and `static`; and one experimental target: `aws`.
+The `systemd` target will deploy your app over SSH to a remote server with Docker installed and register itself as a SystemD service on that server.
 You'll then need to set up a web server and a reverse proxy to localhost:3000 on the server.
 This deployment target is very convenient for users of VPS services, since as long as your server already has Docker installed and your reverse proxy is set up, you can deploy your app with a single command.
-There is currently an AWS Elastic Beanstalk deployment under development.
+
+The `static` target will compile your app to a static site placed in the `static` directory in the root of your project.
+This target doesn't support any of Shttr's dynamic rendering, or features like ShttrDB, but it's very useful for those who want to use Shttr's templating and tooling to build their static site.
+Sites generated with the `static` target are suitable for deployment to GitHub Pages, or other such static hosting services.
+
+The `aws` target produces a zip file which can be deployed to AWS Elastic Beanstalk as a Docker image.
+This is still a bit experimental because it doesn't yet support features like ShttrDB, so there won't be any option for persistent storage for apps deployed in this way yet.
 
 ## Updating the System's Shttr Runtime
 
