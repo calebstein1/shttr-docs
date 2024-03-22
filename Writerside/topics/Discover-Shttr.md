@@ -10,6 +10,8 @@ This rock stable foundation is then combined with new technologies like containe
 Shell on the Shttr is managed entirely by the Shttr CLI, which can be downloaded from the frontpage of [shttr.io](https://shttr.io).
 You'll need to make sure you have certain dependencies installed on your computer prior to running Shttr CLI.
 Specifically, you'll need Docker and NodeJS installed.
+On MacOS, you'll also need GNU Find, which can be installed from MacPorts with `sudo port install findutils`.
+If you wish to use the Shttr Static Site Generator with the `pd` module, you'll need Pandoc installed as well.
 Once the dependencies are met, you'll download install.sh from [shttr.io](https://shttr.io), and run the following commands in your terminal:
 ```Shell
 cd ~/Downloads
